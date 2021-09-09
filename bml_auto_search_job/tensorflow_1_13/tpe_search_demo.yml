@@ -1,0 +1,32 @@
+#搜索算法参数
+search_strategy:
+  algo: TPE_SEARCH #搜索策略：贝叶斯搜索
+  params:
+    n_startup_points: 5 # 初始点数量  ｜[1,20] int类型
+    max_concurrent: 5 #最大并发量    ｜[1,20] int类型
+
+#单次训练时数据的采样比例，单位%
+data_sampling_scale: 100  #｜（0，100] int类型
+
+#最大搜索次数
+max_trial_num: 10  # ｜>0 int类型
+
+#评价指标参数
+metrics:
+  name: acc #评价指标  ｜ 任意字符串 str类型
+  goal: MAXIMIZE #最大值/最小值 ｜ str类型   MAXIMIZE or MINIMIZE   必须为这两个之一（也即支持大写）
+  expected_value: 100 #早停标准值，评价指标超过该值则结束整个超参搜索，单位%  ｜无限制 int类型
+
+#搜索参数空间
+search_space:
+  batch_size:
+    htype: choice
+    value: [100, 200, 300, 400, 500, 600]
+  lr:
+    htype: loguniform
+    value: [0.0001, 0.1]
+  last_step:
+    htype: choice
+    value: [20000, 50000, 100000]
+
+

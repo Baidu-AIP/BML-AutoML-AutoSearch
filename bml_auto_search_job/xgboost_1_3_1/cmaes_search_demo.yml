@@ -1,0 +1,31 @@
+#搜索算法参数
+search_strategy:
+  algo: CMAES_SEARCH #搜索策略：进化-cmaes算法
+  params:
+    population_num: 8 #种群个体数量 ｜ [1,10] int类型
+    round: 10 #迭代轮数     ｜[5,50] int类型
+    step_size: 1.0 # 学习步长 ｜（0，10] float类型
+
+#单次训练时数据的采样比例，单位%
+data_sampling_scale: 100  #｜（0，100] int类型
+
+#评价指标参数
+metrics:
+  name: mse #评价指标 ｜ 任意字符串 str类型
+  goal: MINIMIZE #最大值/最小值 ｜ str类型   MAXIMIZE or MINIMIZE   必须为这两个之一（也即支持大写）
+  expected_value: 10 #早停标准值，评价指标超过该值则结束整个超参搜索，单位% ｜无限制 int类型
+
+#搜索参数空间
+search_space:
+  max_depth:
+    htype: randint
+    value: [3, 10]
+  num_round:
+    htype: randint
+    value: [1, 8]
+  gamma:
+    htype: uniform
+    value: [0.1, 1]
+  eta:
+    htype: loguniform
+    value: [0.01, 1]
